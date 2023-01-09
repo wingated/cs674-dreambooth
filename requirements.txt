@@ -1,0 +1,7 @@
+markupsafe==2.0.1
+accelerate
+torchvision
+transformers>=4.25.1
+ftfy
+tensorboard
+modelcards
