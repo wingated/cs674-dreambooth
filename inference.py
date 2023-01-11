@@ -10,4 +10,4 @@ prompt = "a photo of sks rubber duck at the beach"
 
 image = pipe(prompt, num_inference_steps=50, guidance_scale=7.5).images[0]
 
-image.save("output.png")
+image.save("output_model/output.png")
