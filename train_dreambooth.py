@@ -59,6 +59,12 @@ def import_model_class_from_model_name_or_path(pretrained_model_name_or_path: st
 def parse_args(input_args=None):
     parser = argparse.ArgumentParser(description="Simple example of a training script.")
     parser.add_argument(
+        "--internet_access",
+        type=bool,
+        default=True,
+        help="Whether to use internet access to download pretrained models and datasets.",
+    )
+    parser.add_argument(
         "--pretrained_model_name_or_path",
         type=str,
         default=None,
@@ -503,6 +509,7 @@ def main(args):
                 torch_dtype=torch_dtype,
                 safety_checker=None,
                 revision=args.revision,
+                local_files_only=not args.internet_access,
             )
             pipeline.set_progress_bar_config(disable=True)
 
@@ -832,6 +839,7 @@ def main(args):
             unet=accelerator.unwrap_model(unet),
             text_encoder=accelerator.unwrap_model(text_encoder),
             revision=args.revision,
+            local_files_only=not args.internet_access,
         )
         pipeline.save_pretrained(args.output_dir)
 
