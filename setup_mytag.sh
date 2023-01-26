@@ -1,14 +1,5 @@
 #!/bin/bash
 
-#SBATCH --time=1:00:00   # walltime.  hours:minutes:seconds
-#SBATCH --ntasks=1   # number of processor cores (i.e. tasks)
-#SBATCH --nodes=1   # number of nodes
-#SBATCH --gpus=1
-#SBATCH --mem-per-cpu=64000M   # 64G memory per CPU core
-#SBATCH --mail-type=BEGIN
-#SBATCH --mail-type=END
-#SBATCH --mail-type=FAIL
-
 # some helpful debugging options
 set -e
 set -u
@@ -17,7 +8,7 @@ set -u
 
 module load charliecloud/0.26
 
-ch-tar2dir "~/mytag.tar.gz" "~/tags" # unpack the container
+ch-tar2dir ${HOME}/mytag.tar.gz ${HOME}/tags # unpack the container
 
 # module load cuda
 # module load libnvidia-container
@@ -31,4 +22,4 @@ ch-run \
 -b ${HOME}/output_model:/app/output_model \
 -c /app \
 ~/tags/mytag/ -- \
-./run_training.sh --max_train_steps=1 --internet_access=True # the name of the command INSIDE THE CONTAINER that you want to run
+./run_training.sh --max_train_steps=1 # the name of the command INSIDE THE CONTAINER that you want to run

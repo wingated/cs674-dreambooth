@@ -8,6 +8,8 @@
 #SBATCH --mail-type=BEGIN
 #SBATCH --mail-type=END
 #SBATCH --mail-type=FAIL
+#SBATCH --qos=cs
+#SBATCH --partition=cs
 
 # some helpful debugging options
 set -e
@@ -31,4 +33,4 @@ ch-run \
 -b ${HOME}/output_model:/app/output_model \
 -c /app \
 ~/tags/mytag/ -- \
-./run_training.sh --max_train_steps=400 --internet_access=False # the name of the command INSIDE THE CONTAINER that you want to run
+./run_training.sh --max_train_steps=400 --local_files_only # the name of the command INSIDE THE CONTAINER that you want to run
