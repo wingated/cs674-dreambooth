@@ -22,4 +22,5 @@ export HF_HOME="./hf_models"
   --learning_rate=5e-6 \
   --lr_scheduler="constant" \
   --lr_warmup_steps=0 \
-  --max_train_steps=400
+  $1 \
+  $2 
