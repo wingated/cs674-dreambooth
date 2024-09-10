@@ -459,7 +459,7 @@ def main(args):
         log_with=args.report_to,
         project_dir=logging_dir,
     )
-
+    
     # Currently, it's not possible to do gradient accumulation when training two models with accelerate.accumulate
     # This will be enabled soon in accelerate. For now, we don't allow gradient accumulation when training two models.
     # TODO (patil-suraj): Remove this check when gradient accumulation with two models is enabled in accelerate.
@@ -689,9 +689,6 @@ def main(args):
         "Please make sure to always have all model weights in full float32 precision when starting training - even if"
         " doing mixed precision training. copy of the weights should still be float32."
     )
-
-    if unet.dtype != torch.float32:
-        raise ValueError(f"Unet loaded as datatype {unet.dtype}. {low_precision_error_string}")
 
     if args.train_text_encoder and text_encoder.dtype != torch.float32:
         raise ValueError(f"Text encoder loaded as datatype {text_encoder.dtype}. {low_precision_error_string}")
