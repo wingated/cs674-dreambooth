@@ -27,7 +27,7 @@ fi
                                                                                                                                                                
 # run a shell                                                                                                                                                  
 enroot start \
-       --mount /lustre/scratch/usr/${USER}:/home/${USER}/compute --rw \
+       --mount /nobackup/autodelete/usr/${USER}:/home/${USER}/compute --rw \
        --mount ${HOME}/hf_models:/app/hf_models \
        --mount ${HOME}/output_model:/app/output_model \
        mycontainer \
